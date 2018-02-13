@@ -115,6 +115,55 @@ def parse_getcom(obj):
 
     return {"fams": fams, "indis": indis}
 
+def print_fams(info):
+    fams = info["fams"]
+    indis = info["indis"]
+    fams_table = PrettyTable(
+        ["ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"])
+    for id in fams:
+        fam = fams[id]
+        line = []
+        line.append(fam["FAM"])
+        line.append(fam["MARRDATE"])
+        line.append(fam.get("DIVDATE"))
+        line.append(fam["HUSB"])
+        line.append(indis[fam["HUSB"]]["NAME"])
+        line.append(fam["WIFE"])
+        line.append(indis[fam["WIFE"]]["NAME"])
+        line.append(fam.get("CHIL"))
+        fams_table.add_row(line)
+    print(fams_table)
+
+def print_indis(info):
+    indis = info["indis"]
+    indis_table = PrettyTable(["ID", "Name", "GENDER", "BIRTHDAY", "Age", "Alive", "Death", "Child", "Spouse"])
+    for id in indis:
+        indi = indis[id]
+        line = []
+        line.append(indi["INDI"])
+        line.append(indi["NAME"])
+        line.append(indi["SEX"])
+        line.append(indi["BIRTDATE"])
+        year_birth = int(indi["BIRTDATE"].split(" ")[2])
+        year_death = int(indi["DEATDATE"].split(' ')[2])
+        if (year_death == None):
+            now_year = int(time.strftime("%Y", time.localtime(time.time())))
+            line.append(now_year - year_birth)
+        else:
+            line.append(year_death - year_birth)
+        line.append(indi.get("DEATDATE") == None)
+        line.append(indi.get("DEATDATE"))
+        line.append(indi.get("FAMC"))
+        line.append(indi.get("FAMS"))
+        indis_table.add_row(line)
+    print(indis_table)
+
+
+def main():
+    info = parse_getcom(read_gedcom_file('..\Project01-Pan_Chen.txt'))
+    print_indis(info)
+    print_fams(info)
+
 
 if __name__ == '__main__':
     main()
