@@ -160,7 +160,7 @@ def print_indis(info):
 
 
 def main():
-    info = parse_getcom(read_gedcom_file('..\Project01-Pan_Chen.txt'))
+    info = parse_getcom(read_gedcom_file('Project01-Pan_Chen.txt'))
     print_indis(info)
     print_fams(info)
 
