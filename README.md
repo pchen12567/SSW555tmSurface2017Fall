@@ -7,5 +7,7 @@
 
 ## Scope
 
+## Dependence
+    prettytable
 ### aaa
 
