@@ -69,6 +69,7 @@ def parse_getcom(obj):
     indis = {}
     fams = {}
     current = ()
+    line = 1
     for i in obj:
         if i['level'] == "0":
             if ["HEAD", "NOTE", "TRLR"].count(i['tag']) == 1:
@@ -76,34 +77,34 @@ def parse_getcom(obj):
             current = {'scope': i['tag'], 'id': i['argument']}
             if i['tag'] == "FAM":
                 fams[i['argument']] = {}
-                fams[i['argument']][i['tag']] = i['argument']
+                fams[i['argument']][i['tag']] = {'line': line, 'value': i['argument']}
             if i['tag'] == "INDI":
                 indis[i['argument']] = {}
-                indis[i['argument']][i['tag']] = i['argument']
+                indis[i['argument']][i['tag']] = {'line': line, 'value': i['argument']}
         elif i['level'] == '1':
             has_l2 = ['BIRT', 'DEAT', 'MARR', 'DIV']
             if has_l2.count(i['tag']) == 1:
                 l1_name = i['tag']
             elif current['scope'] == "FAM":
                 if fams[current['id']].get(i['tag']) is not None:
-                    if type(fams[current['id']][i['tag']]) is str:
-                        fams[current['id']][i['tag']] = [fams[current['id']][i['tag']]]
-                    fams[current['id']][i['tag']].append(i['argument'])
+                    if type(fams[current['id']][i['tag']]['value']) is str:
+                        fams[current['id']][i['tag']]['value'] = [fams[current['id']][i['tag']]['value']]
+                    fams[current['id']][i['tag']]['value'].append(i['argument'])
                 else:
-                    fams[current['id']][i['tag']] = i['argument']
+                    fams[current['id']][i['tag']] = {'line': line, 'value': i['argument']}
             elif current['scope'] == "INDI":
                 if indis[current['id']].get(i['tag']) is not None:
-                    if type(indis[current['id']][i['tag']]) is str:
-                        indis[current['id']][i['tag']] = [indis[current['id']][i['tag']]]
-                    indis[current['id']][i['tag']].append(i['argument'])
+                    if type(indis[current['id']][i['tag']]['value']) is str:
+                        indis[current['id']][i['tag']]['value'] = [indis[current['id']][i['tag']]['value']]
+                    indis[current['id']][i['tag']]['value'].append(i['argument'])
                 else:
-                    indis[current['id']][i['tag']] = i['argument']
+                    indis[current['id']][i['tag']] = {'line': line, 'value': i['argument']}
         elif i['level'] == '2':
             if i['tag'] == "DATE":
                 if current['scope'] == "FAM":
-                    fams[current['id']][l1_name + i['tag']] = i['argument']
+                    fams[current['id']][l1_name + i['tag']] = {'line': line, 'value': i['argument']}
                 elif current['scope'] == "INDI":
-                    indis[current['id']][l1_name + i['tag']] = i['argument']
+                    indis[current['id']][l1_name + i['tag']] = {'line': line, 'value': i['argument']}
     return {"fams": fams, "indis": indis}
 
 
@@ -115,14 +116,20 @@ def print_fams(info):
     for id in fams:
         fam = fams[id]
         line = []
-        line.append(fam["FAM"])
-        line.append(fam["MARRDATE"])
-        line.append(fam.get("DIVDATE"))
-        line.append(fam["HUSB"])
-        line.append(indis[fam["HUSB"]]["NAME"])
-        line.append(fam["WIFE"])
-        line.append(indis[fam["WIFE"]]["NAME"])
-        line.append(fam.get("CHIL"))
+        line.append(fam["FAM"]['value'])
+        line.append(fam["MARRDATE"]['value'])
+        div_date = fam.get("DIVDATE")
+        if type(div_date) is dict:
+            div_date = div_date['value']
+        line.append(div_date)
+        line.append(fam["HUSB"]['value'])
+        line.append(indis[fam["HUSB"]['value']]["NAME"]['value'])
+        line.append(fam["WIFE"]['value'])
+        line.append(indis[fam["WIFE"]['value']]["NAME"]['value'])
+        chil = fam.get("CHIL")
+        if type(chil) is dict:
+            chil = chil['value']
+        line.append(chil)
         fams_table.add_row(line)
     print(fams_table)
 
@@ -133,21 +140,30 @@ def print_indis(info):
     for id in indis:
         indi = indis[id]
         line = []
-        line.append(indi["INDI"])
-        line.append(indi["NAME"])
-        line.append(indi["SEX"])
-        line.append(indi["BIRTDATE"])
-        year_birth = int(indi["BIRTDATE"].split(" ")[2])
-        year_death = int(indi["DEATDATE"].split(' ')[2])
+        line.append(indi["INDI"]['value'])
+        line.append(indi["NAME"]['value'])
+        line.append(indi["SEX"]['value'])
+        line.append(indi["BIRTDATE"]['value'])
+        year_birth = int(indi["BIRTDATE"]['value'].split(" ")[2])
+        year_death = int(indi["DEATDATE"]['value'].split(' ')[2])
         if (year_death == None):
             now_year = int(time.strftime("%Y", time.localtime(time.time())))
             line.append(now_year - year_birth)
         else:
             line.append(year_death - year_birth)
-        line.append(indi.get("DEATDATE") is None)
-        line.append(indi.get("DEATDATE"))
-        line.append(indi.get("FAMC"))
-        line.append(indi.get("FAMS"))
+        death_date = indi.get("DEATDATE")
+        line.append(death_date is None)
+        if death_date is not None:
+            death_date = death_date['value']
+        line.append(death_date)
+        famc = indi.get("FAMC")
+        if famc is not None:
+            famc = famc['value']
+        line.append(famc)
+        fams__ = indi.get("FAMS")
+        if fams__ is not None:
+            fams__ = fams__['value']
+        line.append(fams__)
         indis_table.add_row(line)
     print(indis_table)
 
@@ -159,7 +175,8 @@ def print_errors(errors):
 
 def print_error(error):
     # error dict{'error','scope','user_story','line_number','id','description'}
-    print(error['error'] + ": " + error.scope + ": " + error.user_story + ": " + error.line_number + ": " + id + ": " + error.description)
+    print(error[
+              'error'] + ": " + error.scope + ": " + error.user_story + ": " + error.line_number + ": " + id + ": " + error.description)
 
 
 def test_gedcom(info):
@@ -170,14 +187,14 @@ def test_gedcom(info):
 
 def main():
     get_gedcom_test_result('Project01-Pan_Chen.txt')
-    #get_gedcom_test_result('bug.txt')
+    # get_gedcom_test_result('bug.txt')
 
 
 def get_gedcom_test_result(file_name):
     info = parse_getcom(read_gedcom_file(file_name))
     print_indis(info)
     print_fams(info)
-    #print_errors(info)
+    # print_errors(info)
 
 
 if __name__ == '__main__':
