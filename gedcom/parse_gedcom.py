@@ -76,6 +76,7 @@ def parse_getcom(obj):
     for i in obj:
         if i['level'] == "0":
             if ["HEAD", "NOTE", "TRLR"].count(i['tag']) == 1:
+                line+=1
                 continue
             current = {'scope': i['tag'], 'id': i['argument']}
             if i['tag'] == "FAM":
@@ -108,6 +109,7 @@ def parse_getcom(obj):
                     fams[current['id']][l1_name + i['tag']] = {'line': line, 'value': i['argument']}
                 elif current['scope'] == "INDI":
                     indis[current['id']][l1_name + i['tag']] = {'line': line, 'value': i['argument']}
+        line+=1
     return {"fams": fams, "indis": indis}
 
 
