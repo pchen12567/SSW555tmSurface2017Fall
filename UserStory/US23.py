@@ -15,7 +15,7 @@ def unique_indi(info):
         if l.count(tup) != 0:
             rt.append(
                 {'error': 'Error', 'scope': 'individual', 'user_story': 'US23', 'line_number': item.get('NAME')['line'],
-                 'id': i['INDI']['value'], 'description': 'Duplicate name and birthday'})
+                 'id': item['INDI']['value'], 'description': 'Duplicate name and birthday'})
         l.append(tup)
 
     return rt
