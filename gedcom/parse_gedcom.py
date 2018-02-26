@@ -173,10 +173,10 @@ def print_errors(errors):
         print_error(error)
 
 
-def print_error(error):
+def print_error(err):
     # error dict{'error','scope','user_story','line_number','id','description'}
-    print(error[
-              'error'] + ": " + error.scope + ": " + error.user_story + ": " + error.line_number + ": " + id + ": " + error.description)
+    print(err['error'] + ": " + err['scope'] + ": " + err['user_story'] + ": " + err[
+        'line_number'] + ": " + id + ": " + err['description'])
 
 
 def test_gedcom(info):
@@ -194,7 +194,7 @@ def get_gedcom_test_result(file_name):
     info = parse_getcom(read_gedcom_file(file_name))
     print_indis(info)
     print_fams(info)
-    # print_errors(info)
+    test_gedcom(info)
 
 
 if __name__ == '__main__':
