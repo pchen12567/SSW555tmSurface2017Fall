@@ -115,6 +115,7 @@ def parse_getcom(obj):
 
     return {"fams": fams, "indis": indis}
 
+
 def print_fams(info):
     fams = info["fams"]
     indis = info["indis"]
@@ -133,6 +134,7 @@ def print_fams(info):
         line.append(fam.get("CHIL"))
         fams_table.add_row(line)
     print(fams_table)
+
 
 def print_indis(info):
     indis = info["indis"]
@@ -159,10 +161,33 @@ def print_indis(info):
     print(indis_table)
 
 
+def print_errors(errors):
+    for error in errors:
+        print_error(error)
+
+
+def print_error(error):
+    # error dict{'error','scope','user_story','line_number','id','description'}
+    print(
+        error.error + ": " + error.scope + ": " + error.user_story + ": " + error.line_number + ": " + id + ": " + error.description)
+
+
+def test_gedcom(info):
+    rt = []
+    # user story
+    print_errors(rt)
+
+
 def main():
-    info = parse_getcom(read_gedcom_file('Project01-Pan_Chen.txt'))
+    get_gedcom_test_result('Project01-Pan_Chen.txt')
+    get_gedcom_test_result('bug.txt')
+
+
+def get_gedcom_test_result(file_name):
+    info = parse_getcom(read_gedcom_file(file_name))
     print_indis(info)
     print_fams(info)
+    print_errors(info)
 
 
 if __name__ == '__main__':
