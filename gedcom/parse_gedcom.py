@@ -4,6 +4,9 @@
 from prettytable import PrettyTable
 import time
 
+from SSW555tmSurface2017Fall.UserStory.US21 import correct_gender
+from SSW555tmSurface2017Fall.UserStory.US23 import unique_indi
+
 
 def read_gedcom_file(path):
     '''
@@ -182,12 +185,14 @@ def print_error(err):
 def test_gedcom(info):
     rt = []
     # user story
+    unique_indi(info)
+    correct_gender(info)
     print_errors(rt)
 
 
 def main():
     get_gedcom_test_result('Project01-Pan_Chen.txt')
-    # get_gedcom_test_result('bug.txt')
+    get_gedcom_test_result('bug.txt')
 
 
 def get_gedcom_test_result(file_name):
