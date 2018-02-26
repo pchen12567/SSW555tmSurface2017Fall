@@ -178,15 +178,15 @@ def print_errors(errors):
 
 def print_error(err):
     # error dict{'error','scope','user_story','line_number','id','description'}
-    print(err['error'] + ": " + err['scope'] + ": " + err['user_story'] + ": " + err[
-        'line_number'] + ": " + id + ": " + err['description'])
+    print(err['error'] + ": " + err['scope'] + ": " + err['user_story'] + ": " + str(err[
+        'line_number']) + ": " + err['id'] + ": " + err['description'])
 
 
 def test_gedcom(info):
     rt = []
     # user story
-    unique_indi(info)
-    correct_gender(info)
+    rt += unique_indi(info)
+    rt += correct_gender(info)
     print_errors(rt)
 
 
