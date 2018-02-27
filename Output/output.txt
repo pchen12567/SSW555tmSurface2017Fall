@@ -1,0 +1,23 @@
+Test output for file "Project01-Pan_Chen.txt"
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
+|  ID |       Name      | GENDER |  BIRTHDAY  | Age | Alive |   Death    | Child |     Spouse     |
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
+| I01 |    Yi /Sima/    |   M    | 28 APR 179 |  72 | False | 7 SEP 251  |  None |      F01       |
+| I02 | Chunhua /Zhang/ |   F    | 12 JUN 189 |  58 | False | 21 DEC 247 |  None |      F01       |
+| I03 |    Shi /Sima/   |   M    | 9 AUG 208  |  47 | False | 23 MAR 255 |  F01  | ['F02', 'F03'] |
+| I04 |   Zhao /Sima/   |   M    | 15 OCT 211 |  54 | False | 6 SEP 265  |  F01  |      F04       |
+| I05 |   Wei /Xiahou/  |   F    | 7 JUL 211  |  23 | False | 18 SEP 234 |  None |      F02       |
+| I06 |   Weiyu /Yang/  |   F    | 17 MAR 214 |  64 | False | 25 NOV 278 |  None |      F03       |
+| I07 |    Rou /Sima/   |   F    | 11 AUG 230 |  45 | False | 19 MAY 275 |  F02  |      None      |
+| I08 |    You /Sima/   |   M    | 11 AUG 238 |  45 | False | 20 FEB 283 |  F03  |      None      |
+| I09 |  Yuanji /Wang/  |   F    | 14 DEC 217 |  51 | False | 20 APR 268 |  None |      F04       |
+| I10 |    Yan /Sima/   |   M    | 21 JAN 236 |  54 | False | 16 MAY 290 |  F04  |      None      |
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+|  ID |  Married   |  Divorced  | Husband ID | Husband Name | Wife ID |    Wife Name    |    Children    |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+| F01 | 5 FEB 207  |    None    |    I01     |  Yi /Sima/   |   I02   | Chunhua /Zhang/ | ['I03', 'I04'] |
+| F02 | 26 JUN 228 | 18 SEP 234 |    I03     |  Shi /Sima/  |   I05   |   Wei /Xiahou/  |      I07       |
+| F03 | 10 OCT 237 |    None    |    I03     |  Shi /Sima/  |   I06   |   Weiyu /Yang/  |      I08       |
+| F04 | 18 AUG 234 |    None    |    I04     | Zhao /Sima/  |   I09   |  Yuanji /Wang/  |      I10       |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
