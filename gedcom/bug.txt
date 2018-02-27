@@ -32,7 +32,7 @@
 1 FAMS F03
 0 NOTE difine Zhao Sima
 0 I04 INDI
-1 NAME Yi /Sima/
+1 NAME Shi /Sima/
 1 BIRT
 2 DATE 28 APR 179
 1 SEX M
