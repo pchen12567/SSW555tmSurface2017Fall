@@ -17,14 +17,14 @@ def correct_gender(info):
         if gender_husb == 'F':
             rt.append(
                 {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US' + str(user_story),
-                 'line_number': fams[i]['line'],
-                 'id': fams[i]['FAM'], 'description': 'Husband gender should be M'})
+                 'line_number': indis[id_husb]['line'],
+                 'id': indis[id_husb]['INDI'], 'description': 'Husband gender should be M'})
 
         id_wife = fams[i]['WIFE']
         gender_wife = indis[id_wife]['SEX']
         if gender_wife == 'M':
             rt.append(
-                {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US23', 'line_number': fams[i]['line'],
-                 'id': fams[i]['FAM'], 'description': 'Wife gender should be F'})
+                {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US23', 'line_number': indis[id_wife]['line'],
+                 'id': indis[id_wife]['INDI'], 'description': 'Wife gender should be F'})
 
     return rt
