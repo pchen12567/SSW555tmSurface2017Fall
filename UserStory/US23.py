@@ -4,6 +4,8 @@ Created on Thu Feb 25 22:50:18 2018
 This program provides a function that implement US23 in Sprint 1.
 """
 
+user_story = 23
+
 
 def unique_indi(info):
     indis = info['indis']
@@ -11,11 +13,15 @@ def unique_indi(info):
     rt = []
     for i in indis:
         item = indis[i]
-        tup = (item.get('NAME')['value'], item.get("BIRTDATE")['value'])
+        tup = (item.get('NAME'), item.get("BIRTDATE"))
         if l.count(tup) != 0:
             rt.append(
-                {'error': 'Error', 'scope': 'individual', 'user_story': 'US23', 'line_number': item.get('NAME')['line'],
-                 'id': i['INDI']['value'], 'description': 'Duplicate name and birthday'})
+                {'error': 'ERROR',
+                 'scope': 'INDIVIDUAL',
+                 'user_story': 'US' + str(user_story),
+                 'line_number': str(item['line']),
+                 'id': item['INDI'],
+                 'description': 'Duplicate name and birthday'})
         l.append(tup)
 
     return rt
