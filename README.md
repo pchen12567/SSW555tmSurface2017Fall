@@ -12,6 +12,14 @@
 ### Updates
     Added line number into the data structure.
 
+## 18 FEB 2018 Project VI
+### Implements
+    US06 US08 US09 US11
+### Updates
+    Add a date parser to help deal with dates.
+    Add a method which help create error dict.
+
+
 # Dependence
     prettytable
 
