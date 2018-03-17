@@ -1,4 +1,4 @@
-from datetime import date,timedelta
+from datetime import date, timedelta
 
 dic_m = {
     "JAN": 1,
@@ -21,5 +21,5 @@ def date_parser(input_date):
     return date(year=int(year), month=dic_m[month], day=int(day))
 
 
-def time_delta(date1,date2):
-    return time_delta(date1,date2)
+def time_delta(date1, date2):
+    return time_delta(date_parser(date1), date_parser(date2))
