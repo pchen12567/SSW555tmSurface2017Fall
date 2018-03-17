@@ -204,8 +204,8 @@ def test_gedcom(info):
 
 
 def main():
-    get_gedcom_test_result('Project01-Pan_Chen.txt')
-    get_gedcom_test_result('bug.txt')
+    get_gedcom_test_result('../Input/Project01-Pan_Chen.txt')
+    get_gedcom_test_result('../Input/bug.txt')
 
 
 def get_gedcom_test_result(file_name):

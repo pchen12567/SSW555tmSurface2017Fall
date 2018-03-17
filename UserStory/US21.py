@@ -24,7 +24,7 @@ def correct_gender(info):
         gender_wife = indis[id_wife]['SEX']
         if gender_wife == 'M':
             rt.append(
-                {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US23', 'line_number': indis[id_wife]['line'],
+                {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US21', 'line_number': indis[id_wife]['line'],
                  'id': indis[id_wife]['INDI'], 'description': 'Wife gender should be F'})
 
     return rt
