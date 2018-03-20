@@ -1,0 +1,31 @@
+Output for file "PJ06_test.txt"
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
+|  ID |       Name      | GENDER |  BIRTHDAY  | Age | Alive |   Death    | Child |     Spouse     |
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
+| I01 |    Yi /Sima/    |   M    | 28 APR 179 |  72 | False | 7 SEP 251  |  None |      F01       |
+| I02 | Chunhua /Zhang/ |   F    | 12 JUN 189 |  58 | False | 21 DEC 247 |  None |      F01       |
+| I03 |    Shi /Sima/   |   M    | 9 AUG 206  |  27 | False | 23 MAR 233 |  F01  | ['F02', 'F03'] |
+| I04 |   Zhao /Sima/   |   M    | 15 OCT 211 |  54 | False | 6 SEP 265  |  F01  |      F04       |
+| I05 |   Wei /Xiahou/  |   F    | 7 JUL 211  |  22 | False | 18 SEP 233 |  None |      F02       |
+| I06 |   Weiyu /Yang/  |   F    | 17 MAR 214 |  64 | False | 25 NOV 278 |  None |      F03       |
+| I07 |    Rou /Sima/   |   F    | 11 AUG 256 |  19 | False | 19 MAY 275 |  F02  |      None      |
+| I08 |    You /Sima/   |   M    | 11 AUG 238 |  45 | False | 20 FEB 283 |  F03  |      None      |
+| I09 |  Yuanji /Wang/  |   F    | 14 DEC 217 |  51 | False | 20 APR 268 |  None |      F04       |
+| I10 |    Yan /Sima/   |   M    | 21 JAN 236 |  54 | False | 16 MAY 290 |  F04  |      None      |
++-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+|  ID |  Married   |  Divorced  | Husband ID | Husband Name | Wife ID |    Wife Name    |    Children    |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+| F01 | 5 FEB 207  |    None    |    I01     |  Yi /Sima/   |   I02   | Chunhua /Zhang/ | ['I03', 'I04'] |
+| F02 | 26 JUN 228 | 18 SEP 234 |    I03     |  Shi /Sima/  |   I05   |   Wei /Xiahou/  |      I07       |
+| F03 | 18 AUG 232 |    None    |    I03     |  Shi /Sima/  |   I06   |   Weiyu /Yang/  |      I08       |
+| F04 | 18 AUG 234 |    None    |    I04     | Zhao /Sima/  |   I09   |  Yuanji /Wang/  |      I10       |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+ERROR: INDIVIDUAL: US6: 23: I03: Divorce after death date.
+ERROR: INDIVIDUAL: US6: 52: I05: Divorce after death date.
+ERROR: INDIVIDUAL: US8: 23: I03: Child was born after marry date.
+ERROR: INDIVIDUAL: US8: 70: I07: Child was born more than 9 month after divorce
+ERROR: INDIVIDUAL: US9: 70: I07: Birth after mother's death.
+ERROR: INDIVIDUAL: US9: 70: I07: Birth after 9 months of father's death.
+ERROR: INDIVIDUAL: US9: 79: I08: Birth after 9 months of father's death.
+ERROR: INDIVIDUAL: US11: 23: I03: Bigamy in F02 and F03
