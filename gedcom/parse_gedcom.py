@@ -204,11 +204,8 @@ def test_gedcom(info):
     # user story
     rt += info['errors']
     rt += unique_indi(info)
-    print(rt)
     rt += us21_correct_gender(info)
-    print(rt)
     rt += unique_id(info)
-    print(rt)
     rt += unique_first_name(info)  # US25
     rt += correct_divorce(info)  # US06
     rt += correct_born(info)  # US08

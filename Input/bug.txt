@@ -111,7 +111,7 @@
 1 FAMS F04
 0 NOTE difine Yan Sima
 0 I10 INDI
-1 NAME Yan /Sima/
+1 NAME Yan /Yan/
 1 BIRT
 2 DATE 21 JAN 236
 1 SEX M
