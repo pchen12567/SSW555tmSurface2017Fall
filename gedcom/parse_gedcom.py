@@ -12,9 +12,10 @@ from UserStory.US21_RE_BAD import us21_correct_gender
 from UserStory.US22 import unique_id
 from UserStory.US23 import unique_indi
 from UserStory.US25 import unique_first_name
-
 from UserStory.US10 import marriage_after_14
 from UserStory.US16 import same_sur_name
+from UserStory.US02 import correct_marry_date
+from UserStory.US03 import correct_indiborn
 
 
 def read_gedcom_file(path):
@@ -137,7 +138,7 @@ def parse_getcom(obj):
                 elif current['scope'] == "INDI":
                     indis[current['id']][l1_name + i['tag']] = i['argument']
         line += 1
-    return {"fams": fams, "indis": indis, 'errors':errors}
+    return {"fams": fams, "indis": indis, 'errors': errors}
 
 
 def print_fams(info):
@@ -211,14 +212,17 @@ def test_gedcom(info):
     rt += correct_born(info)  # US08
     rt += birth_before_death_of_parents(info)  # US09
     rt += no_bigamy(info)  # US11
-    rt += marriage_after_14(info)
-    rt += same_sur_name(info)
+    rt += marriage_after_14(info)  # US10
+    rt += same_sur_name(info)  # US16
+    rt += correct_marry_date(info)  # US02
+    rt += correct_indiborn(info)  # US03
     print_errors(rt)
 
 
 def main():
     get_gedcom_test_result('../Input/Project01-Pan_Chen.txt')
-    get_gedcom_test_result('../Input/PJ06_test.txt')
+    # get_gedcom_test_result('../Input/PJ06_test.txt')
+    get_gedcom_test_result('../Input/PJ08_test.txt')
 
 
 def get_gedcom_test_result(file_name):
