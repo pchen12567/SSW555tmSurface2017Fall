@@ -4,7 +4,11 @@
 from prettytable import PrettyTable
 import time
 
-from UserStory.US21 import correct_gender
+from UserStory.US06 import correct_divorce
+from UserStory.US08 import correct_born
+from UserStory.US09 import birth_before_death_of_parents
+from UserStory.US11 import no_bigamy
+from UserStory.US21_RE_BAD import us21_correct_gender
 from UserStory.US22 import unique_id
 from UserStory.US23 import unique_indi
 from UserStory.US25 import unique_first_name
@@ -200,9 +204,16 @@ def test_gedcom(info):
     # user story
     rt += info['errors']
     rt += unique_indi(info)
-    rt += correct_gender(info)
+    print(rt)
+    rt += us21_correct_gender(info)
+    print(rt)
     rt += unique_id(info)
+    print(rt)
     rt += unique_first_name(info)  # US25
+    rt += correct_divorce(info)  # US06
+    rt += correct_born(info)  # US08
+    rt += birth_before_death_of_parents(info)  # US09
+    rt += no_bigamy(info)  # US11
     rt += marriage_after_14(info)
     rt += same_sur_name(info)
     print_errors(rt)
