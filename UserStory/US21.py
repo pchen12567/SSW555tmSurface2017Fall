@@ -12,13 +12,7 @@ def correct_gender(info):
     indis = info['indis']
     rt = []
     for i in fams:
-        id_husb = fams[i]['HUSB']
-        gender_husb = indis[id_husb]['SEX']
-        if gender_husb == 'F':
-            rt.append(
-                {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US' + str(user_story),
-                 'line_number': indis[id_husb]['line'],
-                 'id': indis[id_husb]['INDI'], 'description': 'Husband gender should be M'})
+        rt.append(proper(fams, i, indis))
 
         id_wife = fams[i]['WIFE']
         gender_wife = indis[id_wife]['SEX']
@@ -28,3 +22,12 @@ def correct_gender(info):
                  'id': indis[id_wife]['INDI'], 'description': 'Wife gender should be F'})
 
     return rt
+
+
+def proper(fams, i, indis):
+    id_husb = fams[i]['HUSB']
+    gender_husb = indis[id_husb]['SEX']
+    if gender_husb == 'F':
+        return {'error': 'ERROR', 'scope': 'INDIVIDUAL', 'user_story': 'US' + str(user_story),
+             'line_number': indis[id_husb]['line'],
+             'id': indis[id_husb]['INDI'], 'description': 'Husband gender should be M'}

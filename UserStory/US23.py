@@ -23,5 +23,4 @@ def unique_indi(info):
                  'id': item['INDI'],
                  'description': 'Duplicate name and birthday'})
         l.append(tup)
-
     return rt

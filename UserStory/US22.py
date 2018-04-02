@@ -1,7 +1,7 @@
 user_story = 22
 
 
-# for this method, it is solved in the parsing gedcom method, since we should prevent having duplicated key in a dict.
+# for this method, it is solved in the parsing gedcom method, since we can't have duplicated key in a dict.
 
 def unique_id(info):
     rt = []

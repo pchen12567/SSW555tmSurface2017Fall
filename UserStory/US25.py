@@ -25,7 +25,6 @@ def unique_first_name(info):
     return rt
 
 
-
 class TestUniqueFirstName(unittest.TestCase):
     info1 = {
         'fams': {
