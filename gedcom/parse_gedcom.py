@@ -218,7 +218,7 @@ def test_gedcom(info):
 
 def main():
     get_gedcom_test_result('../Input/Project01-Pan_Chen.txt')
-    get_gedcom_test_result('../Input/bug.txt')
+    get_gedcom_test_result('../Input/PJ06_test.txt')
 
 
 def get_gedcom_test_result(file_name):
