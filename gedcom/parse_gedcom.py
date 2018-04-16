@@ -16,6 +16,8 @@ from UserStory.US10 import marriage_after_14
 from UserStory.US16 import same_sur_name
 from UserStory.US02 import correct_marry_date
 from UserStory.US03 import correct_indiborn
+from UserStory.US04 import marry_before_divorce
+from UserStory.US05 import marry_before_death
 
 
 def read_gedcom_file(path):
@@ -216,13 +218,17 @@ def test_gedcom(info):
     rt += same_sur_name(info)  # US16
     rt += correct_marry_date(info)  # US02
     rt += correct_indiborn(info)  # US03
+    rt += marry_before_divorce(info)  # US04
+    rt += marry_before_death(info)  # US05
+
     print_errors(rt)
 
 
 def main():
     get_gedcom_test_result('../Input/Project01-Pan_Chen.txt')
     # get_gedcom_test_result('../Input/PJ06_test.txt')
-    get_gedcom_test_result('../Input/PJ08_test.txt')
+    # get_gedcom_test_result('../Input/PJ08_test.txt')
+    get_gedcom_test_result('../Input/PJ10_test.txt')
 
 
 def get_gedcom_test_result(file_name):
