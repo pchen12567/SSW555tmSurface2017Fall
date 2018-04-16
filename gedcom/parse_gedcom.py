@@ -4,6 +4,8 @@
 from prettytable import PrettyTable
 import time
 
+from util.date_parser import date_parser, time_delta
+
 from UserStory.US06 import correct_divorce
 from UserStory.US08 import correct_born
 from UserStory.US09 import birth_before_death_of_parents
@@ -84,6 +86,7 @@ def parse_getcom(obj):
     indis = {}
     fams = {}
     current = ()
+    # US 40
     line = 1
     errors = []
     for i in obj:
@@ -173,13 +176,15 @@ def print_indis(info):
         line.append(indi["NAME"])
         line.append(indi["SEX"])
         line.append(indi["BIRTDATE"])
-        year_birth = int(indi["BIRTDATE"].split(" ")[2])
-        year_death = int(indi["DEATDATE"].split(' ')[2])
-        if (year_death == None):
-            now_year = int(time.strftime("%Y", time.localtime(time.time())))
-            line.append(now_year - year_birth)
+        # US27
+        birth = date_parser(indi["BIRTDATE"])
+        death = indi.get('DEATDATE')
+        if death is None:
+            now = date_parser(time.strftime("%d %b %Y", time.localtime(time.time())))
+            line.append(int(time_delta(birth, now) / 365))
         else:
-            line.append(year_death - year_birth)
+            death = date_parser(death)
+            line.append(int(time_delta(birth, death) / 365))
         death_date = indi.get("DEATDATE")
         line.append(death_date is None)
         line.append(death_date)
@@ -197,9 +202,8 @@ def print_errors(errors):
 
 def print_error(err):
     # error dict{'error','scope','user_story','line_number','id','description'}
-    print(err['error'] + ": " + err['scope'] + ": " + err['user_story'] + ": " + str(err[
-                                                                                         'line_number']) + ": " + err[
-              'id'] + ": " + err['description'])
+    print(err['error'] + ": " + err['scope'] + ": " + err['user_story'] + ": " +
+          str(err['line_number']) + ": " + err['id'] + ": " + err['description'])
 
 
 def test_gedcom(info):

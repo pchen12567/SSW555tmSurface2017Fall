@@ -1,5 +1,7 @@
 from datetime import date
 
+user_story = 42
+
 dic_m = {
     "JAN": 1,
     "FEB": 2,
@@ -22,4 +24,4 @@ def date_parser(input_date):
 
 
 def time_delta(date1, date2):
-    return (date2-date1).days
+    return (date2 - date1).days
