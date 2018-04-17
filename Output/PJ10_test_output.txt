@@ -1,4 +1,12 @@
 Test output for file "PJ10_test_output.txt"
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+|  ID |  Married   |  Divorced  | Husband ID | Husband Name | Wife ID |    Wife Name    |    Children    |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+| F01 | 5 FEB 207  |    None    |    I01     |  Yi /Sima/   |   I02   | Chunhua /Zhang/ | ['I03', 'I04'] |
+| F02 | 26 JUN 228 | 18 SEP 234 |    I03     |  Shi /Sima/  |   I05   |   Wei /Xiahou/  |      I07       |
+| F03 | 10 OCT 237 |    None    |    I03     |  Shi /Sima/  |   I06   |   Weiyu /Yang/  |      I08       |
+| F04 | 18 AUG 234 |    None    |    I04     | Zhao /Sima/  |   I09   |  Yuanji /Wang/  |      I10       |
++-----+------------+------------+------------+--------------+---------+-----------------+----------------+
 +-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
 |  ID |       Name      | GENDER |  BIRTHDAY  | Age | Alive |   Death    | Child |     Spouse     |
 +-----+-----------------+--------+------------+-----+-------+------------+-------+----------------+
@@ -18,9 +26,9 @@ Test output for file "PJ10_test_output.txt"
 +-----+------------+------------+------------+--------------+---------+-----------------+----------------+
 | F01 | 5 FEB 178  |    None    |    I01     |  Yi /Sima/   |   I02   | Chunhua /Zhang/ | ['I03', 'I04'] |
 | F02 | 26 JUN 228 | 18 SEP 234 |    I03     |  Shi /Sima/  |   I05   |   Wei /Xiahou/  |      I07       |
-| F03 | 18 AUG 232 |    None    |    I03     |  Shi /Sima/  |   I06   |   Weiyu /Yang/  |      I08       |
-| F04 | 18 AUG 234 | 18 AUG 233 |    I04     |  Shi /Sima/  |   I09   |  Yuanji /Wang/  |      I10       |
+| F03 | 18 AUG 234 | 18 AUG 233 |    I04     |  Shi /Sima/  |   I09   |  Yuanji /Wang/  |      I10       |
 +-----+------------+------------+------------+--------------+---------+-----------------+----------------+
+ERROR: FAMILY: US22: 122: F03: ID is duplicated with F03
 ERROR: INDIVIDUAL: US23: 79: I08: Duplicate name and birthday
 ERROR: INDIVIDUAL: US21: 5: I01: HUSB gender should be M
 ERROR: INDIVIDUAL: US21: 14: I02: WIFE gender should be F
@@ -30,19 +38,16 @@ ERROR: INDIVIDUAL: US6: 52: I05: Divorce after death date.
 ERROR: INDIVIDUAL: US6: 34: I04: Divorce after death date.
 ERROR: INDIVIDUAL: US6: 104: I09: Divorce after death date.
 ERROR: INDIVIDUAL: US8: 70: I07: Child was born more than 9 month after divorce
-ERROR: INDIVIDUAL: US8: 79: I08: Child was born after marry date.
 ERROR: INDIVIDUAL: US8: 113: I10: Child was born more than 9 month after divorce
 ERROR: INDIVIDUAL: US9: 70: I07: Birth after mother's death.
 ERROR: INDIVIDUAL: US9: 70: I07: Birth after 9 months of father's death.
-ERROR: INDIVIDUAL: US9: 113: I10: Birth after mother's death.
-ERROR: INDIVIDUAL: US9: 113: I10: Birth after 9 months of father's death.
 ERROR: INDIVIDUAL: US11: 23: I03: Bigamy in F02 and F03
 ERROR: INDIVIDUAL: US10: 5: I01: I01 married in F01 before he was 14 years old.
 ERROR: INDIVIDUAL: US10: 14: I02: I02 married in F01 before she was 14 years old.
-ERROR: FAMILY: US16: 122: F04: INDIVIDUAL I04 AND INDIVIDUAL I10 are both Male in the same family but has different sur name
+ERROR: FAMILY: US16: 122: F03: INDIVIDUAL I04 AND INDIVIDUAL I10 are both Male in the same family but has different sur name
 ERROR: INDIVIDUAL: US2: 5: I01: Marriage before birth date.
 ERROR: INDIVIDUAL: US2: 14: I02: Marriage before birth date.
 ERROR: INDIVIDUAL: US3: 113: I10: Individual born after death
-ERROR: FAMILY: US4: 122: F04: Marriage occurs after divorce
+ERROR: FAMILY: US4: 122: F03: Marriage occurs after divorce
 ERROR: INDIVIDUAL: US5: 34: I04: Husband Marriage before death date.
 ERROR: INDIVIDUAL: US5: 104: I09: Wife Marriage before death date.
